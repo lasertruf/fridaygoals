@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button'; 
 import { FormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ClipboardModule } from 'ngx-clipboard';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatNativeDateModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    ClipboardModule,
+    FlexLayoutModule
   ],
   providers: [{provide : MAT_DATE_LOCALE, useValue: 'en-IN'}],
   bootstrap: [AppComponent]
