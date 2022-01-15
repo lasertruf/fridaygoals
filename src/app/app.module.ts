@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { ClipboardModule } from 'ngx-clipboard';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     FormsModule,
     MatButtonModule,
     ClipboardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [{provide : MAT_DATE_LOCALE, useValue: 'en-IN'}],
   bootstrap: [AppComponent]

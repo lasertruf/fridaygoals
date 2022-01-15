@@ -1,75 +1,91 @@
-
-<!-- <div>
-  <mat-form-field  class="example-full-width" appearance="fill">
-    <mat-label>Choose a date</mat-label>
-    <input matInput name="datepicked"  [formControl]="datepicked" (change)="dateChange()" [matDatepicker]="picker">
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <button mat-raised-button (click)="picker.open()">Open</button>
-</div> -->
-
-
-<div style="padding-left: 5%; font-size: 20px; padding-top: 20px;">
-  FRIDAY GOALS TEMPLATE GENERATOR
-  <span><button style="z-index: 2;color: white;" mat-button (click)=setName()>JAYANT</button>
-  </span>
-</div>
-
-<div style="padding-left: 5%;padding-top: 20px;">
-  <mat-form-field appearance="fill">
-    <mat-label>Select a Monday</mat-label>
-    <input matInput  [matDatepicker]="picker"
-    [(ngModel)]="dateToPass" (dateInput)="addEvent('input', $event)">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-</div>
-
-<div style="padding-left: 5%;">
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input type="text" (keyup)=nameInput() placeholder="Your first name, eg: JAYANT" matInput [(ngModel)]="name">
-  </mat-form-field>
-</div>
-
-<!-- <button (click)="showFG()" mat-raised-button [disabled]="!clickable" >Create your Friday Goals</button> -->
-
-
-<div   style="padding-left: 5%;" >
-  <div>
-    <input #text1 style="display: none;" type="textarea" [value]="this.titletext">
-   <span #text1 *ngIf="this.name=='JAYANT'">:dart</span> FRIDAY GOALS | {{this.name ? (this.name | uppercase) : '*NAME*'}} {{GH_Title}}
-  <span>
-    <button  (cbOnSuccess)="copyTitle($event)" [cbContent]="text1.value" mat-button [ngxClipboard]="text1">Copy title</button>
-  </span>
-  </div>
-  <br>
-
-
-<div  fxLayout="column" > 
-
-  <span>
-    <input #text2 style="display: none;" type="textarea" [value]="this.bodytext">
-  </span>
-
-<div   fxLayout="column">
-<div  fxLayout="row">
-  <div  fxFlex="22" fxLayout="column" >
-    <div  *ngFor="let i of GH_Body">
-      ### {{i}}
-      <br>
-      <div *ngIf="this.name=='JAYANT'">
-        ### Completed:
-        <br>
-        ![](https://progress-bar.dev/0/)
-      </div>
-      {{task}}
+<div fxFlex fxLayout="row">
+  <div style="width: 50%;">
+    <div style="padding-left: 5%; font-size: 20px; padding-top: 20px;">
+      FRIDAY GOALS TEMPLATE GENERATOR
+      <span><button style="z-index: 2;color: white;" mat-button (click)=setName()>JAYANT</button>
+      </span>
     </div>
+
+    <div style="padding-left: 5%;padding-top: 20px;">
+      <mat-form-field appearance="fill">
+        <mat-label>Select a Monday</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dateToPass" (dateInput)="addEvent('input', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div style="padding-left: 5%;">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input type="text" (keyup)=nameInput() placeholder="Your first name, eg: JAYANT" matInput [(ngModel)]="name">
+      </mat-form-field>
+    </div>
+
+    <!-- <button (click)="showFG()" mat-raised-button [disabled]="!clickable" >Create your Friday Goals</button> -->
+
+    <div style="padding-left: 5%;">
+      <div>
+        <input #text1 style="display: none;" type="textarea" [value]="this.titletext">
+        <span #text1 *ngIf="this.name=='JAYANT'">🎯</span> FRIDAY GOALS | {{this.name ? (this.name | uppercase) :
+        '*NAME*'}} {{GH_Title}}
+        <span>
+          <button (cbOnSuccess)="copyTitle($event)" [cbContent]="text1.value" mat-button [ngxClipboard]="text1">Copy
+            title</button>
+        </span>
+      </div>
+      <br>
+
+
+      <div fxLayout="column">
+
+        <span>
+          <input #text2 style="display: none;" type="textarea" [value]="this.bodytext">
+        </span>
+
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <div fxFlex="30" fxLayout="column">
+              <div *ngFor="let i of GH_Body">
+                ### {{i}}
+                <br>
+                <div *ngIf="this.name=='JAYANT'">
+                  ### Completed:
+                  <br>
+                  ![](https://progress-bar.dev/0/)
+                </div>
+                {{task}}
+              </div>
+            </div>
+
+            <span fxFlex>
+              <button (cbOnSuccess)="copyBody($event)" [cbContent]="text2.value" mat-button [ngxClipboard]="text2">Copy
+                body</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
+
+
   
-  <span fxFlex>
-    <button (cbOnSuccess)="copyBody($event)" [cbContent]="text2.value" mat-button [ngxClipboard]="text2">Copy body</button>
-  </span>
-</div>
-</div>
-</div>
+  <div style="width: 50%;">
+    <div style="padding-left: 5%; font-size: 20px; padding-top: 20px;">
+      CREATE FRIDAY GOALS ISSUE
+    </div>
+    
+    <mat-form-field  style="padding-left: 5%;padding-top: 20px;" appearance="fill">
+      <mat-label>Token</mat-label>
+      <input [(ngModel)]="token" matInput type="text">
+    </mat-form-field>
+    <br>
+    <div style="padding-left: 5%;padding-top: 20px;" >
+      <button mat-raised-button (click)="createIssue()" >Create issue</button>
+    </div>
+   
+  </div>
+
+  </div>

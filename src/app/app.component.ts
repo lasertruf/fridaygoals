@@ -1,14 +1,18 @@
 import { TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { ClipboardService } from 'ngx-clipboard';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
   title = 'Friday Goals';
   todaymillis = new Date().getTime()
@@ -36,8 +40,11 @@ export class AppComponent implements OnInit {
   bodytext:any = []
   dateToPass = new Date()
   selectedDate:any = new Date().getTime()
+  token: any
+  bodystring : string = ""
 
-  constructor(private clipboardService: ClipboardService){
+  constructor(private clipboardService: ClipboardService,
+    private httpClient: HttpClient){
 
   }
 
@@ -58,7 +65,7 @@ FG_Text(){
   console.log(this.GH_Title);
 
   if(this.name=='JAYANT'){
-  this.titletext = ":dart FRIDAY GOALS | " + this.name + " : " + this.date +" " + this.months[this.month] + " - " + (this.fridaydate) + " " + this.months[this.fridaymonth] + " " + this.year.toString().slice(2,4)
+  this.titletext = "🎯 FRIDAY GOALS | " + this.name + " : " + this.date +" " + this.months[this.month] + " - " + (this.fridaydate) + " " + this.months[this.fridaymonth] + " " + this.year.toString().slice(2,4)
   this.titletextend = " : " + this.date +" " + this.months[this.month] + " - " + (this.fridaydate) + " " + this.months[this.fridaymonth] + " " + this.year.toString().slice(2,4)
  
 }else{
@@ -92,7 +99,7 @@ FG_Text(){
     }
     this.bodytext.push(obj)
   }
-
+this.bodystring=obj
 }
 
 showFG(){
@@ -188,13 +195,58 @@ nameInput(){
   let pipe = new UpperCasePipe()
   this.name = pipe.transform(this.name)
   if(this.name=='JAYANT'){
-    this.titletext = ":dart FRIDAY GOALS | "+ this.name + this.titletextend
+    this.titletext = "🎯 FRIDAY GOALS | "+ this.name + this.titletextend
     // this.setName()
   }else{
     this.titletext = "FRIDAY GOALS | "+ this.name + this.titletextend
   }
   this.setothername()
 
+}
+
+createIssue(){
+
+  if(this.name.length>0){
+
+    this.postAPI().subscribe((res)=>{
+      console.log(res);
+      })
+  }
+
+}
+
+
+postAPI() {
+  // this.copyTitle(1)
+  // this.copyBody(1)
+
+  let httpHeaders = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': "token " + this.token,
+      'Accept': 'application/vnd.github.v3+json'
+    })
+  }
+
+  
+  // let API_URL = "https://api.github.com/repos/LatticeInnovations/Glowship-Saas-Main/issues"
+  let API_URL = "https://api.github.com/repos/lasertruf/fridaygoals/issues"
+  let body = {
+    title : this.titletext,
+    body : this.bodystring,
+    labels : ["friday goal"],
+    // assignees:["lasertruf"]
+    // owner: 'lasertruf',
+    // repo: 'fridayGoals',
+  }
+ 
+ 
+  // let issuesUrl = "https://github.com/lasertruf/fridaygoals/issues"
+   
+    return this.httpClient.post(API_URL,body,httpHeaders)
+        .pipe(map((res:any ) => {
+            return res;
+    }));
 }
 
 

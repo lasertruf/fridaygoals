@@ -32,6 +32,9 @@ MIT
 @angular/core
 MIT
 
+@angular/flex-layout
+MIT
+
 @angular/forms
 MIT
 
@@ -64,6 +67,12 @@ THE SOFTWARE.
 MIT
 
 @angular/router
+MIT
+
+ngx-clipboard
+MIT
+
+ngx-window-token
 MIT
 
 rxjs
