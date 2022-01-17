@@ -209,7 +209,10 @@ createIssue(){
   if(this.name.length>0){
 
     this.postAPI().subscribe((res)=>{
-      console.log(res);
+        console.log(res);
+        alert("Friday Goal Created");
+      },(error:any)=>{
+        alert("Failed To Create Friday Goal");
       })
   }
 
@@ -229,8 +232,8 @@ postAPI() {
   }
 
   
-  // let API_URL = "https://api.github.com/repos/LatticeInnovations/Glowship-Saas-Main/issues"
-  let API_URL = "https://api.github.com/repos/lasertruf/fridaygoals/issues"
+   let API_URL = "https://api.github.com/repos/LatticeInnovations/Glowship-Saas-Main/issues"
+  // let API_URL = "https://api.github.com/repos/lasertruf/fridaygoals/issues"
   let body = {
     title : this.titletext,
     body : this.bodystring,
