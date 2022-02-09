@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ClipboardService } from 'ngx-clipboard';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -42,14 +43,32 @@ export class AppComponent implements OnInit {
   selectedDate:any = new Date().getTime()
   token: any
   bodystring : string = ""
+  urlend:any;
+  imageSection : boolean = false;
 
   constructor(private clipboardService: ClipboardService,
+    private activatedRoute : ActivatedRoute,
+    private router : Router,
     private httpClient: HttpClient){
+
+      this.router.events.subscribe(
+        (event: any) => {
+          if(event instanceof NavigationEnd) {
+             this.urlend = event.url
+            console.log(this.urlend);
+
+            if(this.urlend == '/image'){
+              this.imageSection = true;
+            }
+          }
+        });
+        
 
   }
 
 ngOnInit(): void {
-  console.log(this.todaymillis);
+  // console.log(this.todaymillis);
+  
   
     // console.log(this.day,this.date);
     // console.log(this.today);
@@ -81,7 +100,7 @@ FG_Text(){
     this.day = new Date(this.todaymillis).getDay()
     this.month = new Date(this.todaymillis).getMonth()
   }
-  console.log(this.GH_Body);
+  // console.log(this.GH_Body);
   let obj:any="";
   this.bodytext=[]
   if(this.name!='JAYANT'){

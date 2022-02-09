@@ -1,4 +1,4 @@
-<div fxFlex fxLayout="row">
+<div *ngIf="!imageSection" fxFlex fxLayout="row">
   <div style="width: 50%;">
     <div style="padding-left: 5%; font-size: 20px; padding-top: 20px;">
       FRIDAY GOALS TEMPLATE GENERATOR
@@ -89,3 +89,7 @@
   </div>
 
   </div>
+
+
+  <router-outlet></router-outlet>
+  

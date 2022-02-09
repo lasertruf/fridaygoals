@@ -19,10 +19,12 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { ClipboardModule } from 'ngx-clipboard';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpClientModule } from '@angular/common/http';
+import { ImageComponent } from './image/image.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,
