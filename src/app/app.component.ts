@@ -57,13 +57,18 @@ export class AppComponent implements OnInit {
              this.urlend = event.url
             console.log(this.urlend);
 
-            if(this.urlend == '/image'){
+            if(this.urlend.includes('/?id=')){
               this.imageSection = true;
+              let id = this.urlend.split('=')[1]
+              this.router.navigate(['image',id])
             }
           }
         });
         
 
+        let id = this.activatedRoute.snapshot.params
+        console.log(id);
+        
   }
 
 ngOnInit(): void {
