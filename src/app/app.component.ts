@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
   bodystring : string = ""
   urlend:any;
   imageSection : boolean = false;
+  perc:any;
 
   constructor(private clipboardService: ClipboardService,
     private activatedRoute : ActivatedRoute,
@@ -60,7 +61,8 @@ export class AppComponent implements OnInit {
             if(this.urlend.includes('/?id=')){
               this.imageSection = true;
               let id = this.urlend.split('=')[1]
-              this.router.navigate(['image',id])
+              this.perc=id;
+              // this.router.navigate(['image',id])
             }
           }
         });
