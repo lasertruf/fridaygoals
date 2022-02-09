@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "ng:open" : "ng serve --prod --host 0.0.0.0",
-    "build:gh" : "ng build --outputPath=docs --base-href=https://lasertruf.github.io/fridaygoals/"
+    "build:gh" : "ng build --outputPath=docs --base-href=https://lasertruf.github.io/fridaygoals/",
+    "deploy" : "ng build --prod --base-href=/fridaygoals/"
 
   },
   "private": true,
