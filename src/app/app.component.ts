@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
               this.imageSection = true;
               let id = this.urlend.split('=')[1]
               this.perc=id;
-              // this.router.navigate(['image',id])
+              window.location.href = 'http://localhost:4200/assets/image.jpg';
             }
           }
         });

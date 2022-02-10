@@ -5,14 +5,19 @@ import { ImageComponent } from './image/image.component';
 
 const routes: Routes = [
 
-  {
-    path : ':id',
-    component : AppComponent
-  },
+  // {
+  //   path : ':id',
+  //   component : AppComponent
+  // },
   
   {
     path : 'image/:id',
     component : ImageComponent
+  },
+  {
+    path : 'getpic',
+    component : ImageComponent
+    
   },
 
 ];
